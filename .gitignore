@@ -1,0 +1,6 @@
+# Local search runs can contain large CNF and solver-output files.
+/search/
+
+# Python caches are derived artifacts.
+__pycache__/
+*.py[cod]

@@ -1,0 +1,32 @@
+
+
+File Name ------------------------ ramsey-grind/R4_18_210/verification/complement.mtx
+workers: 1
+Reading time 0.00250912
+|V|: 209
+|E|: 15979
+p: 0.73514
+d_max: 177
+d_avg: 152.909
+explicit reduce is set to 4 seconds
+K: 150
+k-cores time: 3.40939e-05, ub: 150
+*** [pmc heuristic: thread 1]   current max clique = 14,  time = 1.50204e-05 sec
+*** [pmc heuristic: thread 1]   current max clique = 15,  time = 4.41074e-05 sec
+[pmc heuristic]	 mc = 15
+Heuristic found clique of size 15 in 0.00104403 seconds
+[pmc: heuristic]  Maximum clique: 111 173 87 89 91 107 58 60 65 69 70 77 78 79 201
+Created adjacency matrix in 1.50204e-05 seconds
+[pmc: initial k-core pruning]  before pruning: |V| = 209, |E| = 15979
+[pmc: initial k-core pruning]  after pruning:  |V| = 209, |E| = 15979
+[pmc]  initial pruning took 3.00407e-05 sec
+[pmc: sorting neighbors]  |E| = 31958, |E_sorted| = 31958
+|V| = 209
+*** [pmc: thread 1]   current max clique = 16,  time = 0.000399113 sec
+*** [pmc: thread 1]   current max clique = 17,  time = 0.000535011 sec
+>>> [pmc: thread 1]
+[pmc: bounds updated - thread 1]  time = 4.0382 sec, |V| = 175 (34 / 209), |E| = 15979, w = 17, p = 0.73514, d_min = 149, d_avg = 152.909, d_max = 177, k_max = 149
+-----------------------------------------------------------------------
+Time taken: 4.74461 SEC
+Size (omega): 17
+Maximum clique: 124 50 19 7 112 98 9 103 8 132 83 17 165 198 114 202 116

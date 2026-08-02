@@ -1,0 +1,27 @@
+
+
+File Name ------------------------ ramsey-grind/search/three_tail_portfolio/verification/graph.mtx
+workers: 1
+Reading time 0.00188398
+|V|: 253
+|E|: 7795
+p: 0.244526
+d_max: 67
+d_avg: 61.6206
+explicit reduce is set to 4 seconds
+K: 57
+k-cores time: 3.69549e-05, ub: 57
+*** [pmc heuristic: thread 1]   current max clique = 3,  time = 3.91006e-05 sec
+[pmc heuristic]	 mc = 3
+Heuristic found clique of size 3 in 0.000393867 seconds
+[pmc: heuristic]  Maximum clique: 96 119 229
+Created adjacency matrix in 1.78814e-05 seconds
+[pmc: initial k-core pruning]  before pruning: |V| = 253, |E| = 7795
+[pmc: initial k-core pruning]  after pruning:  |V| = 253, |E| = 7795
+[pmc]  initial pruning took 2.59876e-05 sec
+[pmc: sorting neighbors]  |E| = 15590, |E_sorted| = 15590
+|V| = 253
+-----------------------------------------------------------------------
+Time taken: 0.00395679 SEC
+Size (omega): 3
+Maximum clique: 96 119 229

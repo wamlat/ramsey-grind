@@ -1,56 +1,44 @@
-# Certificate for R(4,21) >= 253
+# ramsey-grind
 
-`R4_21_ge_253_matrix.txt` is the adjacency matrix of a simple graph `G` on
-252 vertices. Exact maximum-clique computations give
+Computational certificates and reproducibility artifacts for lower bounds on
+off-diagonal Ramsey numbers `R(4,k)`.
 
-- `omega(G) = 3`, so `G` contains no `K4`; and
-- `omega(complement(G)) = 20`, so `G` contains no independent set of size 21.
+## Current certified lower bounds
 
-Therefore this certificate proves
+| Ramsey number | Lower bound | Witness order | `omega(G)` | `omega(complement(G))` | Latest certificate |
+|---|---:|---:|---:|---:|---|
+| `R(4,18)` | **`>= 210`** | 209 | 3 | 17 | [`R4_18_ge_210`](R4_18/R4_18_ge_210/) |
+| `R(4,21)` | **`>= 254`** | 253 | 3 | 20 | [`R4_21_ge_254`](R4_21/R4_21_ge_254/) |
 
-```text
-R(4,21) >= 253.
-```
+A graph `G` on `n` vertices with `omega(G) <= 3` and
+`omega(complement(G)) <= k-1` contains neither a `K4` nor an independent set
+of size `k`; therefore it certifies `R(4,k) >= n+1`.
 
-The SHA-256 digest of the matrix is
+The strongest witness matrices currently in the repository are:
 
-```text
-d420e1e494af36b6526235d27f997d8fd1d3be838379a7c05ecf9327db0a834c
-```
+- [`R4_18_ge_210_matrix.txt`](R4_18/R4_18_ge_210/R4_18_ge_210_matrix.txt),
+  SHA-256
+  `526f170569418326bedfd08d68221440b2c457a4e0eca112580884d990384445`.
+- [`R4_21_ge_254_matrix.txt`](R4_21/R4_21_ge_254/R4_21_ge_254_matrix.txt),
+  SHA-256
+  `e768558e142eb176d2eb2a129840c18e5908dc057571a0354922363eae53e996`.
 
-## Construction
+Each latest-certificate directory contains the witness, its construction
+provenance, a complete SAT instance and satisfying assignment, a strict
+assignment checker, deterministic reconstruction code, and logs from two
+independent exact maximum-clique programs (PMC and Open-MCS).
 
-The first 247 vertices are byte-for-byte the graph in
-`../older/R4_21_ge_248_matrix.txt`. Five vertices were then added by exact
-one-vertex extension.
+## Repository layout
 
-For a `(4,21)` graph `G`, a candidate neighborhood `N` for a new vertex must
-satisfy both of the following exact constraints:
+- [`R4_18/`](R4_18/) contains the `R(4,18)` certificates.
+- [`R4_21/`](R4_21/) contains the `R(4,21)` certificates, including earlier
+  milestones retained for provenance.
 
-1. Every triangle of `G` has at least one vertex outside `N`, preventing a new
-   `K4`.
-2. Every independent 20-set of `G` intersects `N`, preventing a new independent
-   21-set.
+Large experimental searches are kept out of version control. When a search
+produces a new fully checked bound, its reproducibility bundle should be added
+to the appropriate family directory and the table above updated.
 
-All independent 20-sets were enumerated before each SAT solve. The extension
-chain was:
-
-| Base order | Triangles | Independent 20-sets | Output order | New degree at insertion |
-|---:|---:|---:|---:|---:|
-| 247 | 33,000 | 3,420 | 248 | 35 |
-| 248 | 33,100 | 4,789 | 249 | 37 |
-| 249 | 33,210 | 6,248 | 250 | 42 |
-| 250 | 33,355 | 9,143 | 251 | 40 |
-| 251 | 33,487 | 12,100 | 252 | 41 |
-
-
-## Independent verification
-
-Two unrelated exact maximum-clique implementations checked the complete final
-matrix and its complement:
-
-- Parallel Maximum Clique (PMC) returned clique numbers 3 and 20.
-- Open-MCS returned clique numbers 3 and 20.
-
-See `R4_21_ge_253_verification.txt` for source commits, build details, commands,
-hashes, and output summaries.
+For comparison with previously catalogued bounds, see Stanisław
+Radziszowski's [Small Ramsey Numbers](https://doi.org/10.37236/21) dynamic
+survey. The results here are computational certificates and have not yet been
+peer reviewed.
