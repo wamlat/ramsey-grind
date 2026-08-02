@@ -1,0 +1,75 @@
+Certificate: R4_18_ge_210_matrix.txt
+Order: 209
+Edges: 5757
+SHA-256: 526f170569418326bedfd08d68221440b2c457a4e0eca112580884d990384445
+
+Construction provenance
+-----------------------
+R4_18_ge_209_base_matrix.txt:
+  order: 208
+  SHA-256: 5317e46e94f27bca829f0aa7b7f1bb2dcdf56e040ea9b98c199b00b7685f9945
+
+Deleted zero-based base vertices: 203, 207
+Core order: 206
+Added tail: three mutually adjacent vertices
+Tail-to-core degrees: 35, 29, 34
+Final tail degrees: 37, 31, 36
+
+Tail SAT artifacts
+------------------
+three_clique_tail.cnf:
+  variables: 618
+  clauses: 96323
+  breakdown:
+    68298 = 3 * 22766 core-triangle clauses
+    10851 = 3 *  3617 independent-17 clauses
+    16968 = 3 *  5656 tail-pair/core-edge clauses
+      206 = one clause for each core vertex and all three tail vertices
+  SHA-256: 426fdb90d5374cf9abaf914b2e5d04ccbc89674b7e277c7ceda8161ae0efb5cb
+
+three_clique_tail.sol:
+  variables assigned: 618
+  violated clauses: 0
+  SHA-256: 94c876ae58369777e4796394621ff122855574ffa4f0ba1ad9faa74f91f590fe
+
+Strict assignment check:
+  python3 verify_cnf_assignment.py three_clique_tail.cnf three_clique_tail.sol
+  variables=618 assigned=618 clauses=96323 declared=96323 violated=0
+
+Reconstruction check:
+  python3 solution_to_three_clique_tail.py \
+    R4_18_ge_209_base_matrix.txt 203 207 three_clique_tail.sol reconstructed_matrix.txt
+  sha256(reconstructed_matrix.txt) =
+    526f170569418326bedfd08d68221440b2c457a4e0eca112580884d990384445
+
+Checker 1: Parallel Maximum Clique (PMC)
+----------------------------------------
+Command pattern:
+  pmc -f graph.mtx -a 0 -t 1 -w 600
+  pmc -f complement.mtx -a 0 -t 1 -w 600
+
+Outputs:
+  graph:      Size (omega): 3   (0.00198197 seconds)
+  complement: Size (omega): 17  (4.74461 seconds)
+
+PMC graph maximum clique (one-based labels):
+  98 101 199
+
+PMC complement maximum clique (one-based labels):
+  124 50 19 7 112 98 9 103 8 132 83 17 165 198 114 202 116
+
+Checker 2: Open-MCS
+-------------------
+Algorithm: mcs
+Command pattern:
+  open-mcs --input-file=graph.edges --algorithm=mcs
+  open-mcs --input-file=complement.edges --algorithm=mcs
+
+Outputs:
+  graph:      Found maximum clique of size 3   (0.000950 seconds)
+  complement: Found maximum clique of size 17  (4.579132 seconds)
+
+Conclusion
+----------
+omega(G) = 3 and omega(complement(G)) = 17. Thus G has no K4 and no
+independent set of size 18, proving R(4,18) >= 210.

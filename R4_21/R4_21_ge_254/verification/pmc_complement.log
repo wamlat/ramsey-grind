@@ -1,0 +1,52 @@
+
+
+File Name ------------------------ ramsey-grind/search/three_tail_portfolio/verification/complement.mtx
+workers: 1
+Reading time 0.00364614
+|V|: 253
+|E|: 24083
+p: 0.755474
+d_max: 214
+d_avg: 190.379
+explicit reduce is set to 4 seconds
+K: 186
+k-cores time: 5.07832e-05, ub: 186
+*** [pmc heuristic: thread 1]   current max clique = 15,  time = 1.50204e-05 sec
+*** [pmc heuristic: thread 1]   current max clique = 16,  time = 2.47955e-05 sec
+*** [pmc heuristic: thread 1]   current max clique = 17,  time = 3.29018e-05 sec
+*** [pmc heuristic: thread 1]   current max clique = 18,  time = 0.000325918 sec
+[pmc heuristic]	 mc = 18
+Heuristic found clique of size 18 in 0.00163078 seconds
+[pmc: heuristic]  Maximum clique: 133 148 153 249 216 35 23 26 99 114 117 120 72 75 83 87 92 102
+Created adjacency matrix in 2.09808e-05 seconds
+[pmc: initial k-core pruning]  before pruning: |V| = 253, |E| = 24083
+[pmc: initial k-core pruning]  after pruning:  |V| = 253, |E| = 24083
+[pmc]  initial pruning took 8.91685e-05 sec
+[pmc: sorting neighbors]  |E| = 48166, |E_sorted| = 48166
+|V| = 253
+*** [pmc: thread 1]   current max clique = 19,  time = 0.000665188 sec
+*** [pmc: thread 1]   current max clique = 20,  time = 0.00268602 sec
+>>> [pmc: thread 1]
+[pmc: bounds updated - thread 1]  time = 5.14776 sec, |V| = 251 (2 / 253), |E| = 24083, w = 20, p = 0.755474, d_min = 185, d_avg = 190.379, d_max = 214, k_max = 185
+>>> [pmc: thread 1]
+[pmc: bounds updated - thread 1]  time = 10.1618 sec, |V| = 248 (5 / 253), |E| = 24083, w = 20, p = 0.755474, d_min = 185, d_avg = 190.379, d_max = 214, k_max = 185
+>>> [pmc: thread 1]
+[pmc: bounds updated - thread 1]  time = 14.7852 sec, |V| = 245 (8 / 253), |E| = 24083, w = 20, p = 0.755474, d_min = 185, d_avg = 190.379, d_max = 214, k_max = 185
+>>> [pmc: thread 1]
+[pmc: bounds updated - thread 1]  time = 19.043 sec, |V| = 242 (11 / 253), |E| = 24083, w = 20, p = 0.755474, d_min = 185, d_avg = 190.379, d_max = 214, k_max = 185
+>>> [pmc: thread 1]
+[pmc: bounds updated - thread 1]  time = 23.8999 sec, |V| = 238 (15 / 253), |E| = 24083, w = 20, p = 0.755474, d_min = 185, d_avg = 190.379, d_max = 214, k_max = 185
+>>> [pmc: thread 1]
+[pmc: bounds updated - thread 1]  time = 27.94 sec, |V| = 234 (19 / 253), |E| = 24083, w = 20, p = 0.755474, d_min = 185, d_avg = 190.379, d_max = 214, k_max = 185
+>>> [pmc: thread 1]
+[pmc: bounds updated - thread 1]  time = 32.4287 sec, |V| = 229 (24 / 253), |E| = 24083, w = 20, p = 0.755474, d_min = 185, d_avg = 190.379, d_max = 214, k_max = 185
+>>> [pmc: thread 1]
+[pmc: bounds updated - thread 1]  time = 36.7706 sec, |V| = 221 (32 / 253), |E| = 24083, w = 20, p = 0.755474, d_min = 185, d_avg = 190.379, d_max = 214, k_max = 185
+>>> [pmc: thread 1]
+[pmc: bounds updated - thread 1]  time = 40.9294 sec, |V| = 211 (42 / 253), |E| = 24083, w = 20, p = 0.755474, d_min = 185, d_avg = 190.379, d_max = 214, k_max = 185
+>>> [pmc: thread 1]
+[pmc: bounds updated - thread 1]  time = 45.0007 sec, |V| = 185 (68 / 253), |E| = 24083, w = 20, p = 0.755474, d_min = 185, d_avg = 190.379, d_max = 214, k_max = 185
+-----------------------------------------------------------------------
+Time taken: 46.279 SEC
+Size (omega): 20
+Maximum clique: 206 136 219 24 166 69 92 122 81 223 7 41 4 210 145 58 156 245 249 229

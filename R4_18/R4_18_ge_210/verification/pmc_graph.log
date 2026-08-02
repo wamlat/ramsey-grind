@@ -1,0 +1,27 @@
+
+
+File Name ------------------------ ramsey-grind/R4_18_210/verification/graph.mtx
+workers: 1
+Reading time 0.000938177
+|V|: 209
+|E|: 5757
+p: 0.26486
+d_max: 59
+d_avg: 55.0909
+explicit reduce is set to 4 seconds
+K: 55
+k-cores time: 1.50204e-05, ub: 55
+*** [pmc heuristic: thread 1]   current max clique = 3,  time = 1.09673e-05 sec
+[pmc heuristic]	 mc = 3
+Heuristic found clique of size 3 in 0.000145912 seconds
+[pmc: heuristic]  Maximum clique: 98 101 199
+Created adjacency matrix in 1.00136e-05 seconds
+[pmc: initial k-core pruning]  before pruning: |V| = 209, |E| = 5757
+[pmc: initial k-core pruning]  after pruning:  |V| = 209, |E| = 5757
+[pmc]  initial pruning took 1.19209e-05 sec
+[pmc: sorting neighbors]  |E| = 11514, |E_sorted| = 11514
+|V| = 209
+-----------------------------------------------------------------------
+Time taken: 0.00198197 SEC
+Size (omega): 3
+Maximum clique: 98 101 199

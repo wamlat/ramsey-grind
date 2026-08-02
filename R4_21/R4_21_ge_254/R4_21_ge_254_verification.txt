@@ -1,0 +1,92 @@
+Certificate: R4_21_ge_254_matrix.txt
+Order: 253
+Edges: 7795
+SHA-256: e768558e142eb176d2eb2a129840c18e5908dc057571a0354922363eae53e996
+
+Construction provenance
+-----------------------
+R4_21_ge_253_base_matrix.txt:
+  order: 252
+  SHA-256: d420e1e494af36b6526235d27f997d8fd1d3be838379a7c05ecf9327db0a834c
+
+Deleted zero-based base vertices: 244, 246
+Core order: 250
+Added tail: three mutually adjacent vertices
+Tail-to-core degrees: 41, 39, 39
+Final tail degrees: 43, 41, 41
+
+Tail SAT artifacts
+------------------
+three_clique_tail.cnf:
+  variables: 750
+  clauses: 154498
+  breakdown:
+    100110 = 3 * 33370 core-triangle clauses
+     31119 = 3 * 10373 independent-20 clauses
+     23019 = 3 *  7673 tail-pair/core-edge clauses
+       250 = one clause for each core vertex and all three tail vertices
+  SHA-256: cffcd7174d58038a666186c5a028cc508f0c300cf3fc43d212b78ff7aaa89f48
+
+three_clique_tail.sol:
+  variables assigned: 750
+  violated clauses: 0
+  SHA-256: 1e27b93c7d6ce4e4767eb78cd7e47c9dc4da1272538b0165aa4529d2dbb11af2
+
+Strict assignment check:
+  python3 verify_cnf_assignment.py three_clique_tail.cnf three_clique_tail.sol
+  variables=750 assigned=750 clauses=154498 declared=154498 violated=0
+
+Reconstruction check:
+  python3 solution_to_three_clique_tail.py \
+    R4_21_ge_253_base_matrix.txt 244 246 three_clique_tail.sol reconstructed_matrix.txt
+  sha256(reconstructed_matrix.txt) =
+    e768558e142eb176d2eb2a129840c18e5908dc057571a0354922363eae53e996
+
+Search software
+---------------
+The satisfying assignment was found with the included incremental weighted
+local-search implementation, compiled with:
+  g++ -O3 -march=native -std=c++20 -Wall -Wextra -pedantic
+
+Checker 1: Parallel Maximum Clique (PMC)
+----------------------------------------
+Repository: https://github.com/ryanrossi/pmc
+Commit: 06594a0ee1cde5a04f1679aff28072668da96062
+Local compatibility-only build patch: explicit bool conversion for ifstream.
+
+Commands:
+  matrix_to_dimacs R4_21_ge_254_matrix.txt graph graph.mtx
+  matrix_to_dimacs R4_21_ge_254_matrix.txt complement complement.mtx
+  pmc -f graph.mtx -a 0 -t 1 -w 600
+  pmc -f complement.mtx -a 0 -t 1 -w 600
+
+Outputs:
+  graph:      Size (omega): 3              (0.00395679 seconds)
+  complement: Size (omega): 20             (46.279 seconds)
+
+PMC graph maximum clique (one-based labels):
+  96 119 229
+
+PMC complement maximum clique (one-based labels):
+  206 136 219 24 166 69 92 122 81 223 7 41 4 210 145 58 156 245 249 229
+
+Checker 2: Open-MCS
+-------------------
+Repository: https://github.com/darrenstrash/open-mcs
+Commit: 735788af066fc8589f577036af521f22f45c2731
+Algorithm: mcs
+
+Commands:
+  matrix_to_dimacs R4_21_ge_254_matrix.txt graph graph.edges
+  matrix_to_dimacs R4_21_ge_254_matrix.txt complement complement.edges
+  open-mcs --input-file=graph.edges --algorithm=mcs
+  open-mcs --input-file=complement.edges --algorithm=mcs
+
+Outputs:
+  graph:      Found maximum clique of size 3    (0.001491 seconds)
+  complement: Found maximum clique of size 20   (38.307937 seconds)
+
+Conclusion
+----------
+omega(G) = 3 and omega(complement(G)) = 20. Thus G has no K4 and no
+independent set of size 21, proving R(4,21) >= 254.
