@@ -5,10 +5,10 @@ off-diagonal Ramsey numbers `R(4,k)`.
 
 ## Current certified lower bounds
 
-| Ramsey number | Lower bound | Witness order | `omega(G)` | `omega(complement(G))` | Latest certificate |
+| Ramsey number | Prev lower bound | New lower bound | `omega(G)` | `omega(complement(G))` | Latest certificate |
 |---|---:|---:|---:|---:|---|
-| `R(4,18)` | **`>= 210`** | 209 | 3 | 17 | [`R4_18_ge_210`](R4_18/R4_18_ge_210/) |
-| `R(4,21)` | **`>= 254`** | 253 | 3 | 20 | [`R4_21_ge_254`](R4_21/R4_21_ge_254/) |
+| `R(4,18)` | **`>= 209`** | **`>= 210`** | 3 | 17 | [`R4_18_ge_210`](R4_18/R4_18_ge_210/) |
+| `R(4,21)` | **`>= 244`** | **`>= 254`** | 3 | 20 | [`R4_21_ge_254`](R4_21/R4_21_ge_254/) |
 
 A graph `G` on `n` vertices with `omega(G) <= 3` and
 `omega(complement(G)) <= k-1` contains neither a `K4` nor an independent set
