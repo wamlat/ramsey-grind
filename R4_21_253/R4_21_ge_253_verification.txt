@@ -1,0 +1,71 @@
+Certificate: R4_21_ge_253_matrix.txt
+Order: 252
+Edges: 7755
+SHA-256: d420e1e494af36b6526235d27f997d8fd1d3be838379a7c05ecf9327db0a834c
+
+Provenance check
+----------------
+The induced submatrix on vertices 0..246 is exactly
+../R4_21_248/R4_21_ge_248_matrix.txt.
+
+Final extension artifacts
+-------------------------
+R4_21_ge_252_base_matrix.txt:
+  order: 251
+  SHA-256: 922c646aa02bfd55618b79a9fbd8ba4ab4dbead188a51ebdfba8204f0c096084
+
+final_extension.cnf:
+  variables: 251
+  clauses: 45587 = 33487 triangle clauses + 12100 independent-20 clauses
+  SHA-256: b0a68e07642b00fab61dcefea7f2f53c9c52c7490216ef24b681088afa126136
+
+final_extension.sol:
+  result: SATISFIABLE
+  new-vertex degree at insertion: 41
+  SHA-256: 004b1b0138c99e7f182f81e6009cd51df7f1522b2e006af37222a6c853034ab4
+
+SAT solver
+----------
+CaDiCaL 3.0.1
+Commit: c60730422e758ef1cebe7aeddf2dda31c996bf04
+Compiler: g++ (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0
+
+Checker 1: Parallel Maximum Clique (PMC)
+----------------------------------------
+Repository: https://github.com/ryanrossi/pmc
+Commit: 06594a0ee1cde5a04f1679aff28072668da96062
+Local compatibility-only build patch: explicit bool conversion for ifstream.
+
+Commands:
+  ./matrix_to_dimacs R4_21_ge_253_matrix.txt graph R421_253_graph.mtx
+  ./matrix_to_dimacs R4_21_ge_253_matrix.txt complement R421_253_complement.mtx
+  ./pmc -f R421_253_graph.mtx -a 0 -t 1 -w 600
+  ./pmc -f R421_253_complement.mtx -a 0 -t 1 -w 600
+
+Outputs:
+  graph:      Size (omega): 3
+  complement: Size (omega): 20
+
+PMC complement witness (one-based labels as printed by PMC):
+  240 40 130 9 196 223 228 18 74 208 35 25 62 71 150 199 46 2 246 114
+
+Checker 2: Open-MCS
+-------------------
+Repository: https://github.com/darrenstrash/open-mcs
+Commit: 735788af066fc8589f577036af521f22f45c2731
+Algorithm: mcs
+
+Commands:
+  ./matrix_to_dimacs R4_21_ge_253_matrix.txt graph R421_253_graph.edges
+  ./matrix_to_dimacs R4_21_ge_253_matrix.txt complement R421_253_complement.edges
+  ./open-mcs --input-file=R421_253_graph.edges --algorithm=mcs
+  ./open-mcs --input-file=R421_253_complement.edges --algorithm=mcs
+
+Outputs:
+  graph:      Found maximum clique of size 3
+  complement: Found maximum clique of size 20
+
+Conclusion
+----------
+omega(G) = 3 and omega(complement(G)) = 20. Thus G has no K4 and no
+independent set of size 21, proving R(4,21) >= 253.

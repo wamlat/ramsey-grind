@@ -1,39 +1,56 @@
-# Certificate for R(4,21) >= 248
+# Certificate for R(4,21) >= 253
 
-`R4_21_ge_248_matrix.txt` is the adjacency matrix of a graph on 247
-vertices. Its diagonal is zero and the matrix is symmetric.
+`R4_21_ge_253_matrix.txt` is the adjacency matrix of a simple graph `G` on
+252 vertices. Exact maximum-clique computations give
 
-Two independent maximum-clique implementations verify
+- `omega(G) = 3`, so `G` contains no `K4`; and
+- `omega(complement(G)) = 20`, so `G` contains no independent set of size 21.
 
-- `omega(G) = 3`, so the graph contains no `K4`; and
-- `omega(complement(G)) = 20`, so the graph has no independent set of
-  size 21.
+Therefore this certificate proves
 
-Consequently this graph proves `R(4,21) >= 248`.
+```text
+R(4,21) >= 253.
+```
+
+The SHA-256 digest of the matrix is
+
+```text
+d420e1e494af36b6526235d27f997d8fd1d3be838379a7c05ecf9327db0a834c
+```
 
 ## Construction
 
-The graph was obtained by repeated exact one-vertex extension. For a fixed
-`(4,21)` graph `G`, a new vertex neighborhood `N` must satisfy two types of
-constraints:
+The first 247 vertices are byte-for-byte the graph in
+`../older/R4_21_ge_248_matrix.txt`. Five vertices were then added by exact
+one-vertex extension.
 
-1. `N` cannot contain a triangle of `G`, or the new vertex would complete a
+For a `(4,21)` graph `G`, a candidate neighborhood `N` for a new vertex must
+satisfy both of the following exact constraints:
+
+1. Every triangle of `G` has at least one vertex outside `N`, preventing a new
    `K4`.
-2. `N` must meet every independent 20-set of `G`, or that set together with
-   the new vertex would be an independent 21-set.
+2. Every independent 20-set of `G` intersects `N`, preventing a new independent
+   21-set.
 
-The final extension enumerated all 1,672 independent 20-sets in its
-246-vertex base and solved the resulting SAT instance exactly. The preceding
-extensions used the same constraints with lazy independent-set separation.
+All independent 20-sets were enumerated before each SAT solve. The extension
+chain was:
 
-## Verification
+| Base order | Triangles | Independent 20-sets | Output order | New degree at insertion |
+|---:|---:|---:|---:|---:|
+| 247 | 33,000 | 3,420 | 248 | 35 |
+| 248 | 33,100 | 4,789 | 249 | 37 |
+| 249 | 33,210 | 6,248 | 250 | 42 |
+| 250 | 33,355 | 9,143 | 251 | 40 |
+| 251 | 33,487 | 12,100 | 252 | 41 |
 
-The full outputs are in `R4_21_ge_248_verification.txt`. The certificate's
-SHA-256 digest is
 
-```text
-82e0c28b8e46939e343ad5bcec8950fbaf33d2255404b3408a2b3f7188e5c7bf
-```
+## Independent verification
 
-Any maximum-clique program can independently check the claim by computing
-the clique number of the matrix and of its complement.
+Two unrelated exact maximum-clique implementations checked the complete final
+matrix and its complement:
+
+- Parallel Maximum Clique (PMC) returned clique numbers 3 and 20.
+- Open-MCS returned clique numbers 3 and 20.
+
+See `R4_21_ge_253_verification.txt` for source commits, build details, commands,
+hashes, and output summaries.
